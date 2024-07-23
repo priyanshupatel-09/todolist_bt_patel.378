@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <style>
+        body{
+         background-color: #b48bea;
+        }
+       #container{
+        background-color: #5d1ab5;
+        min-height: 350px;
+        width: 300px;
+        margin:14rem 15rem;
+        box-shadow: 0 26px 29px 0 rgb(0,0,0,0.7);
+        border-radius: 10px;
+
+       }
+       #newtask{
+        height: 50px;
+        width: 300px;
+        
+    
+        background-color: #fff;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+       }
+       #search
+       {
+        margin: 10px 10px;
+        height:25px;
+        width:210px;
+        background-color: #fff;
+        border-top:none;
+        border-left:none;
+        border-right:none;
+        border-radius: 3px;
+        outline: none;
+        
+       }
+       #push{
+        height: 30px;
+        border: 1px solid white;
+        margin: 10px ;
+        border-radius: 2px;
+        background-color: #5d1ab5;
+        color: white;
+        border-style: hidden;
+        box-shadow: 0 26px 29px 0 rgb(0,0,0,0.7);
+       }
+       #tasks{
+        margin-top: 20px;
+        padding: 10px 10px;
+        width: 282px;
+        min-height: 50px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 26px 29px 0 rgb(0,0,0,0.7);
+       }
+       .task{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+       }
+       .task span{
+        cursor: pointer;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       }
+       .task button{
+        background-color: #fff;
+        border-radius: 10px;
+        border-style: none;
+       }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="newtask">
+    <input type="text" id="search" name="search" placeholder="Enter the text"><button id="push">add
+
+    </button>
+    </div>
+    
+    <div id="tasks"></div>
+    </div>
+    <script>
+        document.querySelector('#push').onclick=function(){
+            if(document.querySelector('#container input').value.length==0){
+                alert("please enter a task");
+            }
+            else{
+                document.querySelector('#tasks').innerHTML
+                += `
+                   <div class="task">
+                    <span id="taskname">
+                        ${document.querySelector
+                        ('#newtask input').value}
+                    </span>
+                    <button class="delete">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                   </div>
+                `;
+                var current_tasks=document.
+                querySelectorAll(".delete");
+                for(var i=0;i<current_tasks.length; i++){
+                    current_tasks[i].onclick=function(){
+                        this.parentNode.remove();
+                    }
+                }
+                var tasks=document.querySelectorAll(".task");
+                for(var i=0;i<tasks.length;i++){
+                    tasks[i].onclick=function(){
+                        this.classList.toggle('complete');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
